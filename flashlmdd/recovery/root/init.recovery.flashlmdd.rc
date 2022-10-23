@@ -24,13 +24,33 @@
 # OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
+
+import /init.recovery.qcom_decrypt.rc
+
+on init
+    # Create location for fs_mgr to store abbreviated output from filesystem
+    # checker programs.
+    mkdir /dev/fscklogs 0770 root system
+
+on post-fs
+    start boot-hal-1-0
+    
 on fs
     wait /dev/block/platform/soc/${ro.boot.bootdevice}
     symlink /dev/block/platform/soc/${ro.boot.bootdevice} /dev/block/bootdevice
 
-on init
-    setprop sys.usb.configfs 1
-    # Don't lose recovery logs- keep warm reset for coming out of recovery.
-    write /sys/module/msm_poweroff/parameters/warm_reset 1
-    # Enable thermal mitigation
-    write /sys/devices/virtual/thermal/tz-by-name/backup-charge/mode enabled
+    # Set fscklog permission
+    chown root system /dev/fscklogs/log
+    chmod 0770 /dev/fscklogs/log
+
+service overrideprops /system/bin/overrideprops.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+on boot
+    start overrideprops
+    start health-hal-2-1
+    setprop sys.usb.config adb

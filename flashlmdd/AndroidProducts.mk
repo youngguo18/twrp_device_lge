@@ -15,8 +15,8 @@
 #
 
 PRODUCT_MAKEFILES += \
-    $(LOCAL_DIR)/evolution_flashlmdd.mk
+    $(LOCAL_DIR)/twrp_flashlmdd.mk
 
 COMMON_LUNCH_CHOICES := \
-    evolution_flashlmdd-userdebug \
-    evolution_flashlmdd-eng
+    twrp_flashlmdd-userdebug \
+    twrp_flashlmdd-eng

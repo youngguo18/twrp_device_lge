@@ -23,7 +23,7 @@ COMMON_FLASH_PATH := device/lge/flash-common
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := $(COMMON_FLASH_PATH)/bluetooth
 
 # Kernel
-TARGET_KERNEL_CONFIG := vendor/lineage_flash_defconfig
+TARGET_KERNEL_CONFIG := vendor/aosp_flash_defconfig
 
 # Partitions
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 4336910336

@@ -23,17 +23,10 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_p.mk)
 # Inherit from flashlmdd device
 $(call inherit-product, device/lge/flashlmdd/device.mk)
 
-# Inherit some common nusantara stuff.
- $(call inherit-product, vendor/evolution/config/common_full_phone.mk)
+# Inherit some common TWRP stuff.
+$(call inherit-product, vendor/twrp/config/common.mk)
 
-# Device identifiers
-TARGET_BOOT_ANIMATION_RES := 1080
-TARGET_DISABLES_GAPPS :=true
-
-USE_PIXEL_CHARGING := true
-TARGET_SUPPORTS_GOOGLE_RECORDER := true
-
-PRODUCT_NAME := evolution_flashlmdd
+PRODUCT_NAME := twrp_flashlmdd
 PRODUCT_DEVICE := flashlmdd
 PRODUCT_BRAND := lge
 PRODUCT_MANUFACTURER := LGE
@@ -41,9 +34,6 @@ PRODUCT_RELEASE_NAME := V50 ThinQ
 PRODUCT_MODEL := LM-V500
 
 # Maintainer
-EVO_DONATE_URL := https://paypal.me/youngg168
-EVO_MAINTAINER := youngguo
-EVO_SUPPORT_URL := https://t.me/youngguo
 
 PRODUCT_GMS_CLIENTID_BASE := android-lge
 
